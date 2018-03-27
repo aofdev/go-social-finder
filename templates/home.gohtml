@@ -1,0 +1,103 @@
+<html>
+<head>
+    <title>Social Id Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <style>
+        .text_size {
+            font-size: 16px
+        }
+    </style>
+</head>
+<body>
+    <div class="columns has-text-centered">
+        <div class="column">
+            <center>
+                <br>
+                <b class="is-size-2">Social ID Finder <i class="fab fa-searchengin"></i></b>
+                <br>
+                <form id="idForm" action="/"  method="post" >
+
+                    <div class="columns">
+                        <div class="column">
+
+                        </div>
+                        <div class="column is-four-fifths">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input" type="text" id="link" name="link" placeholder="What's your Social Link ?" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <button type="submit" class="button is-success is-medium">
+                                <span class="icon is-medium">
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                </span>
+                                <b>Search</b>
+                            </button>
+                        </div>
+                        <div class="column">
+                
+                        </div>
+                    </div>
+                    </form>
+                    <br>
+                    <div class="columns">
+                        <div class="column">
+                            
+                        </div>
+
+                        <div class="column is-four-fifths">
+                                {{if .fb_id }}
+                                <div class="notification is-info text_size">
+                                    <i class="fab fa-facebook-square"></i>
+                                    <strong>Facebook ID: {{ .fb_id }} </strong>
+                                </div>
+                                {{end}}
+                        {{if .ig_id }}
+                          <div class="notification is-info text_size">
+                                <i class="fab fa-instagram"></i>
+                                <strong>Instagram ID: {{ .ig_id }} </strong>
+                            </div>
+
+                             {{end}}
+                               </div>
+                        <div class="column">
+                        </div>
+                    </div>
+            </center>
+        </div>
+    </div>
+    <br>
+    </div>
+
+    </div>
+
+
+    <!-- <script>
+        $(document).ready(function () {
+            $("#idForm").submit(function(e) {
+
+            
+                $.ajax({
+                       type: "POST",
+                       url: "/",
+                       data: $("#idForm").serialize(), // serializes the form's elements.
+                       success: function(data)
+                       {
+                           console.log(data); // show response.
+                       }
+                     });
+            
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+            });
+        });
+    </script> -->
+</body>
+
+</html>
