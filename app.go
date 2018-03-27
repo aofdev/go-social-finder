@@ -14,14 +14,19 @@ import (
 
 //access token social
 var facebookAccessToken = ""
+var igAccessToken = ""
 
 type Facebook struct {
 	Name string `json:"name"`
 	Page string `json:"id"`
 }
 
-var data string
+type Instagram struct {
+	Name string `json:"username"`
+	Page string `json:"Id"`
+}
 
+var data string
 var tpl *template.Template
 
 func init() {
@@ -83,6 +88,19 @@ func getFacebookPageId(link string, accessToken string) string {
 	jsonData := myRequest(req)
 	res := Facebook{}
 	json.Unmarshal([]byte(jsonData), &res)
+	getPage = res.Page
+	return getPage
+}
+
+func getInstagramPageId(link string, accessToken string) string {
+	var getPage string
+	page := strings.Replace(link, "https://www.instagram.com/", "", -1)
+	pageName := strings.Replace(page, "/", "", -1)
+	req := "https://api.instagram.com/v1/users/search?q=" + pageName + "&count=1&access_token=" + accessToken
+	jsonData := myRequest(req)
+	res := Instagram{}
+	json.Unmarshal([]byte(jsonData), &res)
+	fmt.Println(jsonData)
 	getPage = res.Page
 	return getPage
 }
