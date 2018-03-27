@@ -62,6 +62,14 @@ func index(w http.ResponseWriter, r *http.Request) {
 			tpl.ExecuteTemplate(w, "home.gohtml", facebook_id)
 		} else if strings.Contains(str, "instagram") {
 			fmt.Println("link instagram: ", str)
+			data = getInstagramPageId(str, igAccessToken)
+			fmt.Println("id instagram: ", data)
+			instagram_id := struct {
+				ig_id string
+			}{
+				data,
+			}
+			tpl.ExecuteTemplate(w, "home.gohtml", instagram_id)
 		} else if strings.Contains(str, "youtube") {
 			fmt.Println("link youtube: ", str)
 		} else if strings.Contains(str, "twitter") {
